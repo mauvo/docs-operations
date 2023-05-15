@@ -122,7 +122,7 @@ For more information, please contact Neo4j Professional Services.
 |
 
 |--array-delimiter=<char>
-|Delimiter character between array elements within a value in CSV data. Also accepts 'TAB' and 'U+20AC' for specifying a character using Unicode.
+|Delimiter character between array elements within a value in CSV data. Also accepts `TAB` and e.g. `U+20AC` for specifying a character using Unicode.
 
 ====
 * ASCII character -- e.g. `--array-delimiter=";"`.
@@ -148,7 +148,7 @@ Format errors in input data are still treated as errors.
 |1000
 
 |--delimiter=<char>
-|Delimiter character between values in CSV data. Also accepts 'TAB' and e.g. 'U+20AC' for specifying a character using Unicode.
+|Delimiter character between values in CSV data. Also accepts `TAB` and e.g. `U+20AC` for specifying a character using Unicode.
 
 ====
 * ASCII character -- e.g. `--delimiter=","`.
@@ -191,11 +191,11 @@ Possible values are:
 * `actual` -- (advanced) actual node IDs.
 |string
 
-|--ignore-empty-strings[=<true\|false>]
+|--ignore-empty-strings[=true\|false]
 |Whether or not empty string fields, i.e. "" from input source are ignored, i.e. treated as null.
 |false
 
-|--ignore-extra-columns[=<true\|false>]
+|--ignore-extra-columns[=true\|false]
 |If unspecified columns should be ignored during the import.
 |false
 
@@ -203,18 +203,18 @@ Possible values are:
 |Character set that input data is encoded in.
 |UTF-8
 
-|--legacy-style-quoting[=<true\|false>]
+|--legacy-style-quoting[=true\|false]
 |Whether or not a backslash-escaped quote e.g. \" is interpreted as an inner quote.
 |false
 
 |--max-off-heap-memory=<size>
-|Maximum off-heap memory that `neo4j-admin` can use for various data structures and caching to improve performance.
+|Maximum memory that `neo4j-admin` can use for various data structures and caching to improve performance.
 
-Values can be plain numbers such as `10000000`, or `20G` for 20 gigabytes.
+Values can be plain numbers, such as `10000000`, or `20G` for 20 gigabytes.
 It can also be specified as a percentage of the available memory, for example `70%`.
 |90%
 
-|--multiline-fields[=<true\|false>]
+|--multiline-fields[=true\|false]
 |Whether or not fields from an input source can span multiple lines, i.e. contain newline characters.
 
 Setting `--multiline-fields=true` can severely degrade the performance of the importer.
@@ -232,7 +232,7 @@ Therefore, use it with care, especially with large imports.
 For an example, see <<import-tool-multiple-input-files-regex-example>>.
 |
 
-|--normalize-types[=<true\|false>]
+|--normalize-types[=true\|false]
 |Whether or not to normalize property types to Cypher types, e.g. `int` becomes `long` and `float` becomes `double`.
 |true
 
@@ -251,8 +251,8 @@ You cannot escape using `\`.
 |--read-buffer-size=<size>
 |Size of each buffer for reading input data.
 
-It has to at least be large enough to hold the biggest single value in the input data.
-Value can be a plain number or byte units string, e.g. `128k`, `1m`.
+It has to be at least large enough to hold the biggest single value in the input data.
+The value can be a plain number or a byte units string, e.g. `128k`, `1m`.
 |4194304
 
 |--relationships=[<type>=]<files>...
@@ -280,25 +280,25 @@ If you need to debug the import, it might be useful to collect the stack trace.
 This is done by using the `--verbose` option.
 |import.report
 
-|--skip-bad-entries-logging[=<true\|false>]
+|--skip-bad-entries-logging[=true\|false]
 |Whether or not to skip logging bad entries detected during import.
 |false
 
-|--skip-bad-relationships[=<true\|false>]
+|--skip-bad-relationships[=true\|false]
 |Whether or not to skip importing relationships that refer to missing node IDs, i.e. either start or end node ID/group referring to a node that was not specified by the node input data.
 
-Skipped relationships will be logged, containing at most the number of entities specified by `--bad-tolerance` unless otherwise specified by the `--skip-bad-entries-logging` option.
+Skipped relationships will be logged, containing at most the number of entities specified by `--bad-tolerance`, unless otherwise specified by the `--skip-bad-entries-logging` option.
 |false
 
-|--skip-duplicate-nodes[=<true/false>]
+|--skip-duplicate-nodes[=true\|false]
 |Whether or not to skip importing nodes that have the same ID/group.
 
 In the event of multiple nodes within the same group having the same ID, the first encountered will be imported, whereas consecutive such nodes will be skipped.
 
-Skipped nodes will be logged, containing at most the number of entities specified by `--bad-tolerance` unless otherwise specified by the `--skip-bad-entries-logging` option.
+Skipped nodes will be logged, containing at most the number of entities specified by `--bad-tolerance`, unless otherwise specified by the `--skip-bad-entries-logging` option.
 |false
 
-|--strict[=<true\|false>]
+|--strict[=<true/false>]
 |Whether or not the lookup of nodes referred to from relationships needs to be checked strict.
 If disabled, most but not all relationships referring to non-existent nodes will be detected.
 If enabled all those relationships will be found but at the cost of lower performance.
@@ -307,9 +307,9 @@ If enabled all those relationships will be found but at the cost of lower perfor
 |--threads=<num>
 | (advanced) Max number of worker threads used by the importer. Defaults to the number of available processors reported by the JVM. There is a certain amount of minimum threads needed so for that reason there is no lower bound for this value. For optimal
 performance, this value should not be greater than the number of available processors.
-|10
+|20
 
-|--trim-strings[=<true\|false>]
+|--trim-strings[=true\|false]
 |Whether or not strings should be trimmed for whitespaces.
 |false
 
@@ -493,7 +493,7 @@ If the database into which you import does not exist prior to importing, you mus
 |
 
 |--array-delimiter=<char>
-|Delimiter character between array elements within a value in CSV data. Also accepts 'TAB' and 'U+20AC' for specifying a character using Unicode.
+|Delimiter character between array elements within a value in CSV data. Also accepts `TAB` and `U+20AC` for specifying a character using Unicode.
 
 ====
 * ASCII character -- e.g. `--array-delimiter=";"`.
@@ -519,7 +519,7 @@ Format errors in input data are still treated as errors.
 |1000
 
 |--delimiter=<char>
-|Delimiter character between values in CSV data. Also accepts 'TAB' and e.g. 'U+20AC' for specifying a character using Unicode.
+|Delimiter character between values in CSV data. Also accepts `TAB` and e.g. `U+20AC` for specifying a character using Unicode.
 
 ====
 * ASCII character -- e.g. `--delimiter=","`.
@@ -992,10 +992,10 @@ city03  San Mateo   {latitude:37.554167, longitude:-122.313056, height: 100, crs
 ====
 
 Special considerations for temporal data types::
-The format for all temporal data types must be defined as described in link:{neo4j-docs-base-uri}/cypher-manual/{page-version}/syntax/temporal/#cypher-temporal-instants[Cypher Manual -> Temporal instants syntax] and link:{neo4j-docs-base-uri}/cypher-manual/{page-version}/syntax/temporal/#cypher-temporal-durations[Cypher Manual -> Durations syntax].
+The format for all temporal data types must be defined as described in link:{neo4j-docs-base-uri}/cypher-manual/{page-version}/values-and-types/temporal/#cypher-temporal-instants[Cypher Manual -> Temporal instants syntax] and link:{neo4j-docs-base-uri}/cypher-manual/{page-version}/values-and-types/temporal/#cypher-temporal-durations[Cypher Manual -> Durations syntax].
 Two of the temporal types, _Time_ and _DateTime_, take a time zone parameter that might be common between all or many of the values in the data file.
 It is therefore possible to specify a default time zone for _Time_ and _DateTime_ values in the header, for example: `time{timezone:+02:00}` and: `datetime{timezone:Europe/Stockholm}`.
-If no default time zone is specified, the default timezone is determined by the xref:/reference/configuration-settings.adoc#config_db.temporal.timezone[`db.temporal.timezone`] configuration setting.
+If no default time zone is specified, the default timezone is determined by the xref:/configuration/configuration-settings.adoc#config_db.temporal.timezone[`db.temporal.timezone`] configuration setting.
 The default time zone can be explicitly overridden in the values in the data file.
 +
 .Property format for temporal data types
