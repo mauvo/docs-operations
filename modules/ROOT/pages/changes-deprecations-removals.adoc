@@ -372,7 +372,7 @@ For details, refer to the link:{neo4j-docs-base-uri}/java-reference/current/exte
 
 This section lists all the Neo4j Server features deprecated in the 2025 series, including replacements where applicable.
 
-For deprecations in Cypher language, see link:https://neo4j.com/docs/cypher-manual/current/deprecations-additions-removals-compatibility/[Cypher manual -> Deprecations, additions, and compatibility].
+For deprecations in Cypher language, see link:{neo4j-docs-base-uri}/cypher-manual/current/deprecations-additions-removals-compatibility/[Cypher manual -> Deprecations, additions, and compatibility].
 
 === Procedures
 
@@ -473,6 +473,11 @@ Replaced by: xref:procedures.adoc#procedure_dbms_cluster_secondaryreplicationdis
 | Enterprise Edition
 | Comment
 
+| xref:configuration/configuration-settings.adoc#config_dbms.routing.load_balancing.plugin[`dbms.routing.load_balancing.plugin`]
+| 
+| {check-mark}
+| label:deprecated[Deprecated in 2025.05]
+
 | xref:configuration/configuration-settings.adoc#config_server.db.query_cache_size[`server.db.query_cache_size`]
 | {check-mark}
 | {check-mark}
@@ -557,6 +562,12 @@ For more information, see xref:clustering/databases.adoc#s3-seed-provider[Seed f
 === Java API
 
 Since Neo4j 5.26, the server-side Notification API and the `getNotifications()` method of the Result Core API are deprecated.
+
+=== Neo4j error codes messages
+
+Starting from 2025.04, using the error messages programmatically is deprecated.
+Because error messages might change in a future release, please parse or use GQLSTATUS error codes in your application code.
+For details, see link:{neo4j-docs-base-uri}/status-codes/current/errors/gql-errors/[Status Codes for Errors & Notifications -> List of GQLSTATUS error codes].
 
 == Changes in Neo4j 2025.x
 
