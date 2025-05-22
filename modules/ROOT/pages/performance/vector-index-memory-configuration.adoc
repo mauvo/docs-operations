@@ -7,22 +7,22 @@ When you have a vector index, you must ensure that there is sufficient memory fo
 If Lucene has insufficient memory, the OS will perform page swapping and read data from disk, which will dramatically degrade the Neo4j vector index search performance.
 Tools like IOTOP can assist in understanding disk I/O usage.
 
-== Calculating vector index memory requirements
+== Calculating requirements
 
 In terms of memory and disk space, vectors are large, typically a several kilobytes each. 
-For comparison adding a Node to the database only requires a few bytes.
+For comparison adding a Node or Integer property requires only a few bytes.
 Vectors can quickly become the largest consumer of memory and disk in a database.
+To calculate the memory requirements we'll first consider the size of our vectors to estimate the total amount of vector data. 
+Then we'll consider the index's configuration and requirements.
 
 === Vector sizes
 
-The bytes required by a single vector can be calculated using this formula:
-
-number of dimensions * bytes of precision per dimension
+An important first step is to esimate the number of bytes of vector data the database will store.
+The bytes required by a single vector can be calculated using this formula or using the table below:
+`number of dimensions * bytes of precision per dimension`
 
 For example, a typical vector with 768 dimensions of float32 values would be:
-
-768 * 4 (float32 require 4 bytes of storage) = 3 KiB
-
+`768 * 4 (float32 require 4 bytes of storage) = 3 KiB`. 
 It follows that a million of these vectors requires 3.072 GB.
 
 .Sizes of for typical dimensions of float32 vectors
@@ -47,11 +47,11 @@ It follows that a million of these vectors requires 3.072 GB.
 === Index memory
 
 For optimal performance the index requires enough memory to hold all the vectors and the index structure itself.
-To reduce the memory requirement, Neo4j's vector index turns quantization on by default.
-Quantization reduces the size of the vector by a factor of 4, at the cost of some recall accuracy.
-Quantization can be turned off during index creation, see XXXX.
+By default, Neo4j vector indexes use quantization to reduce the memory required to store the vectors.
+Quantization reduces the size of the vector by a factor of 4 and improves performance, at a small cost to recall accuracy.
+Recall accuracy can be increased by increasing HNSW parameters such as EF Search, or disabling quantization, see https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#config-vector.quantization.enabled.
 
-
+From the example above
 
 
 === Disk space
