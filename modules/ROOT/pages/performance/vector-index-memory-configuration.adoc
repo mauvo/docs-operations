@@ -194,3 +194,11 @@ As a starting point:
 
 Use representative queries and monitor disk read activity during warm-up.
 Tools like `iotop`, or equivalent Linux I/O monitoring tools, can help show whether the operating system is still reading heavily from disk.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+
+endif::[]
